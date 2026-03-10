@@ -59,7 +59,7 @@ go build -o doc-server cmd/main.go
 | 配置项 | 值 |
 |--------|-----|
 | 默认账号 | `admin` |
-| 默认密码 | `admin123` |
+| 默认密码 | `ctqmumu2` |
 | 服务端口 | `3000` |
 | JWT 密钥 | (请在配置文件中修改) |
 
