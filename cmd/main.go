@@ -240,10 +240,10 @@ func main() {
 	}
 
 	fmt.Printf("🚀 Go 后端服务器已启动\n")
-	fmt.Printf("📍 监听端口：%s\n", port)
+	fmt.Printf("📍 监听地址：127.0.0.1:%s (仅本地访问)\n", port)
 	fmt.Printf("🔒 安全加固：密码 bcrypt 哈希、速率限制、输入验证\n")
 
-	if err := http.ListenAndServe(":"+port, nil); err != nil {
+	if err := http.ListenAndServe("127.0.0.1:"+port, nil); err != nil {
 		fmt.Printf("❌ 服务器错误：%v\n", err)
 		os.Exit(1)
 	}
