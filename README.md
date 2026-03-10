@@ -129,9 +129,14 @@ Authorization: Bearer <token>
 
 ## 🌐 在线访问
 
-本地访问：`http://localhost:3000`
+**本地开发**:
+- Go 后端：`http://localhost:3000` (仅本地)
+- Nginx 代理：`http://localhost:62739/doc/login.html`
 
-生产环境部署后访问配置的域名。
+**生产部署**:
+- Go 后端监听 `127.0.0.1:3000` (不对外暴露)
+- Nginx 监听高位随机端口 (如 `62739`)，通过防火墙控制访问
+- 建议使用 SSH 隧道或内网穿透访问
 
 ## ⚙️ 配置说明
 
