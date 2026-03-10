@@ -429,10 +429,41 @@ body {
         bottom: 0;
         z-index: 99;
         transform: translateX(-100%);
+        transition: transform 0.3s ease;
     }
 
-    .docs-sidebar:not(.collapsed) {
+    .docs-sidebar.open {
         transform: translateX(0);
+    }
+
+    .sidebar-toggle {
+        position: sticky;
+        top: 0;
+        background: #f8f9fa;
+        z-index: 10;
+        border-bottom: 1px solid #e0e0e0;
+    }
+
+    /* 移动端 toggle 图标改为关闭按钮样式 */
+    .docs-sidebar.open .toggle-icon {
+        font-size: 18px;
+        font-weight: bold;
+    }
+
+    /* 移动端遮罩层 */
+    .sidebar-overlay {
+        display: none;
+        position: fixed;
+        top: 57px;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 98;
+    }
+
+    .sidebar-overlay.show {
+        display: block;
     }
 
     .editor-container {

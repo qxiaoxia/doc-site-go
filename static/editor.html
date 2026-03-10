@@ -22,6 +22,9 @@
 
         <!-- 主内容区 -->
         <main class="main-content">
+            <!-- 移动端遮罩层 -->
+            <div class="sidebar-overlay" id="sidebarOverlay"></div>
+            
             <!-- 文档列表（可折叠） -->
             <aside class="docs-sidebar" id="docsSidebar">
                 <div class="sidebar-toggle" id="toggleSidebar">
@@ -96,11 +99,45 @@
 
         document.getElementById('welcomeMsg').textContent = username;
 
+        // 检查是否为移动端
+        const isMobile = () => window.innerWidth <= 768;
+
         // 侧边栏切换
-        document.getElementById('toggleSidebar').addEventListener('click', () => {
-            sidebarCollapsed = !sidebarCollapsed;
-            document.getElementById('docsSidebar').classList.toggle('collapsed', sidebarCollapsed);
-            document.querySelector('.toggle-icon').textContent = sidebarCollapsed ? '▶' : '◀';
+        document.getElementById('toggleSidebar').addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            if (isMobile()) {
+                // 移动端：使用 open 类控制显示/隐藏
+                const sidebar = document.getElementById('docsSidebar');
+                const overlay = document.getElementById('sidebarOverlay');
+                sidebar.classList.toggle('open');
+                overlay.classList.toggle('show');
+                
+                // 切换图标
+                const icon = document.querySelector('.toggle-icon');
+                if (icon) {
+                    icon.textContent = sidebar.classList.contains('open') ? '✕' : '◀';
+                }
+            } else {
+                // 桌面端：折叠/展开
+                sidebarCollapsed = !sidebarCollapsed;
+                document.getElementById('docsSidebar').classList.toggle('collapsed', sidebarCollapsed);
+                const icon = document.querySelector('.toggle-icon');
+                if (icon) {
+                    icon.textContent = sidebarCollapsed ? '▶' : '◀';
+                }
+            }
+        });
+
+        // 点击遮罩层关闭侧边栏
+        document.getElementById('sidebarOverlay').addEventListener('click', () => {
+            document.getElementById('docsSidebar').classList.remove('open');
+            document.getElementById('sidebarOverlay').classList.remove('show');
+            const icon = document.querySelector('.toggle-icon');
+            if (icon) {
+                icon.textContent = '◀';
+            }
         });
 
         async function loadDocList() {
