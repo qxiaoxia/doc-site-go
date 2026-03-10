@@ -9,6 +9,7 @@
 - **实时编辑** - 简洁的在线编辑器界面
 - **响应式设计** - 适配桌面和移动端
 - **安全加固** - 安全头、CORS、XSS 防护
+- **Google AI 风格** - 现代化 UI 设计
 
 ## 🛠️ 技术栈
 
@@ -50,7 +51,7 @@ go build -o doc-server cmd/main.go
 # 启动服务
 ./doc-server
 
-# Nginx 配置 (参考 /etc/nginx/sites-available/doc-site)
+# Nginx 配置 (参考 /etc/nginx/sites-available/doc-site-local)
 # 反向代理 /doc/api/ 到 http://127.0.0.1:3000
 ```
 
@@ -75,6 +76,9 @@ doc-site-go/
 │   ├── handler.go   # HTTP 处理器
 │   └── storage.go   # 文档存储
 ├── static/          # 静态资源
+│   ├── editor.html  # 编辑器页面
+│   ├── login.html   # 登录页面
+│   └── style.css    # 样式文件
 ├── go.mod           # Go 模块定义
 ├── go.sum           # 依赖校验
 └── .gitignore       # Git 忽略配置
@@ -91,13 +95,13 @@ Content-Type: application/json
 
 {
   "username": "admin",
-  "password": "admin123"
+  "password": "ctqmumu2"
 }
 
 # 响应
 {
   "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
-  "expires": "2026-03-11T09:00:00Z"
+  "username": "admin"
 }
 ```
 
@@ -159,6 +163,11 @@ Authorization: Bearer <token>
 
 ## 📝 开发日志
 
+- 2026-03-10: Google AI Mode 风格界面
+  - 简洁的白色主题
+  - 可折叠侧边栏
+  - 现代化按钮和动画
+  
 - 2026-03-09: 初始版本发布
   - 用户认证系统
   - 文档 CRUD API
